@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Horarios de Acceso</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1>Horarios de Acceso</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Hora de Inicio</th>
+                <th>Hora de Fin</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="horario : ${horarios}">
+                <td th:text="${horario.id}"></td>
+                <td th:text="${horario.cliente}"></td>
+                <td th:text="${horario.horaInicio}"></td>
+                <td th:text="${horario.horaFin}"></td>
+                <td>
+                    <a th:href="@{/editar/{id}(id=${horario.id})}">Editar</a> |
+                    <a th:href="@{/eliminar/{id}(id=${horario.id})}" onclick="return confirm('¿Seguro que deseas eliminar este horario?');">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/nuevo">Crear nuevo horario</a>
+</body>
+</html>
